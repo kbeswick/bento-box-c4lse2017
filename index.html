@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Where We're Headed With Bento-Box Search</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -24,8 +24,375 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h2>Where We're Headed With Bento-Box Search</h2>
+					<br/>
+					<h3>Kevin Beswick, NCSU Libraries</h3>
+					<h4>@kbeswick</h4>
+				</section>
+				<section>
+					<h2>What is Bento-Box Search?</h2>
+					<img src="images/bento_box.jpg" height="75%" width="75%"/>
+
+          <aside class="notes">
+            How many people know what I mean when I say bento-box search?
+          </aside>
+				</section>
+				<section>
+					<h2>What is Bento-Box Search?</h2>
+					<img src="images/quick_search.png" />
+
+          <aside class="notes">
+            Here is a screenshot of our bento-box search results page.
+          </aside>
+				</section>
+				<section>
+					<h2>What is Bento-Box Search?</h2>
+					<img src="images/quick_search_bento.png" />
+
+          <aside class="notes">
+            We call it bento-box because the search results are sectioned off into categories much like the bento box we saw in the last slide
+          </aside>
+				</section>
+				<section>
+					<h2>What isn't Bento-Box Search?</h2>
+					<ul>
+						<li>The ultimate, robust discovery solution</li>
+						<li>Search at all?</li>
+					</ul>
+
+          <aside class="notes">
+            What isn't bento-box search though? It isn't meant to be the ultimate robust discovery solution. Sometimes it is compared to a blended search approach like Summon, but it isn't necessarily trying to solve the same problem.
+
+            Most of the "search" aspects of bento-box are handled by external services and we just display summaries of their results in the a single interface. So my question is - is bento-box search really solving the problem of search at all?
+          </aside>
+				</section>
+				<section>
+					<h2>How Does NCSU View Bento-Box Search?</h2>
+					<ul>
+						<li>An opportunity for instruction</li>
+						<li>A shortcut to known items or other search tools</li>
+            <li>A recommendation problem</li>
+					</ul>
+
+          <aside class="notes">
+            Instead, we think of bento-box search (yes, I know I keep calling it search) as an instructional opportunity. We can show users that are unfamiliar with the library what different search tools we offer and the types of resources we offer.
+
+            We recognize that many of the search tools we use are tailored to the type of content they search, and attempts to re-create them or abstract into a blended model will lead to loss of data or functionality in a lot of cases. Bento-box search acts as a gateway into these tools, and offers a shortcut for known item searches.
+
+            Bento box search can also be viewed as a recommendation problem. Given a query and anything else we know about the user, what type of resource do we think could best help them? In a lot of cases, we have less control over search results from specific services, but we do have control over the way we present them to users.
+          </aside>
+				</section>
+				<section>
+					<h2>QuickSearch</h2>
+					<ul>
+						<li>NCSU's bento-box search solution</li>
+						<li>Initially created in 2005</li>
+						<li>Rewritten in 2013 as a Ruby on Rails project</li>
+					</ul>
+
+          <aside class="notes">
+            We've been doing bento-box search since 2005, when we initially released QuickSearch. This application has went through many iterations over the years, and we did a complete rewrite in Ruby on Rails in 2013. As part of this, we also made the interface responsive to work on mobile devices as well as desktop.
+          </aside>
+				</section>
+				<section>
+					<h2>quick_search (or quick_search-core)</h2>
+					<span><a href="https://www.github.com/NCSU-Libraries/quick_search">https://www.github.com/NCSU-Libraries/quick_search</a></span>
+					<ul>
+						<li>Open source version of QuickSearch released in 2016</li>
+						<li>A toolkit for easily creating bento-box applications</li>
+						<li>Extracted from NCSU's version</li>
+					</ul>
+
+          <aside class="notes">
+            Last year, we extracted the re-usable parts of the code from our implementation, and released it as an open source project. Rather than releasing a bento-box search application, we released a toolkit that allows you to easily piece together a bento-box application from different modules to encourage sharing and reuse.
+          </aside>
+				</section>
+				<section>
+          <h2>Features</h2>
+          <ul>
+            <li>Rails Gem Engine - easy to install</li>
+            <li>Modular &amp; extensible
+              <ul>
+                <li>Searchers</li>
+                <li>Themes</li>
+              </ul>
+            </li>
+            <li>Statistics (local &amp; GA), Best Bets</li>
+          </ul>
+
+          <aside class="notes">
+            The core of QuickSearch is a Rails gem engine, which means that it can be mounted to a new or existing Rails application. We've built it in a modular way as I mentioned.
+
+            We've released a number of "searchers" which is the code that searches external services and returns results in a way that QuickSearch understands.
+
+            Themes for customizing the look and feel are also modules. We've released a generic theme that you can build off of, or you are able to create your own theme from scratch.
+
+            QuickSearch also offers built in statistics collection and visualization, and has built in support for collecting stats through Google Analytics.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Installation</h2>
+          <ul>
+            <li>Create a new Rails project</li>
+            <li>Add 'quick_search-core' gem &amp; bundle install</li>
+            <li>Run "rails g quick_search:install"</li>
+          </ul>
+
+          <aside class="notes">
+            We've improved the installation process since we initially released the code. Now, you just need to create a new Rails project (or use an existing one). (NOTE: read the bullets...)
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/qs_generic.png" width="90%" height="90%" />
+
+          <aside class="notes">
+            After following these steps, you end up with a fully functional bento-box search platform that searches some services with open APIs. You can then start to setup and swap in your own searchers.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Searchers</h2>
+          <ul>
+            <li>Plugins for QuickSearch that search an external service</li>
+            <li>Small amount of code to implement</li>
+            <li>Automatically hooks into QuickSearch infrastructure for stats collection, etc.</li>
+          </ul>
+
+          <aside class="notes">
+            As I mentioned earlier, searchers are plugins for QuickSearch that search external services. They require a minimal amount of code to implement most of the time. And by following QuickSearch conventions, QuickSearch will automatically be able to start collecting usage statistics for these plugins.
+
+            QuickSearch also allows you to easily make a paginated full page view for any searcher if that particular search index doesn't have a results page already. We do this for our website search.
+          </aside>
+        </section>
+
+				<section>
+					<h2>Available Searchers</h2>
+					<ul>
+						<li>arXiv</li>
+            <li>OpenLibrary</li>
+            <li>Wikipedia</li>
+            <li>Summon</li>
+            <li>ContentDM (contributed by Temple University)</li>
+					</ul>
+
+          <aside class="notes">
+            Here are a list of publicly available searchers so far. We've had one contributed by Temple University. We're hoping to add a few more to this list in the near future
+          </aside>
+				</section>
+
+        <section>
+          <h2>Statistics</h2>
+          <p>QuickSearch automatically collects usage data for all searchers</p>
+          <ul>
+            <li>Queries (query text)</li>
+            <li>Clicks (which box, which part of the box, etc.)</li>
+            <li>Sessions (on/off campus, mobile/desktop, length)</li>
+          </ul>
+
+          <aside class="notes">
+            I've mentioned that QuickSearch collects usage statistics. We record queries, clicks (not the specific results, but just which module and which part of the module, ie, result 1 2 or 3, header, see more results).
+
+            We've also recently added the ability to tie all that together and collect anonymous session data - we look at whether requests have come from on or off campus, mobile or desktop, and we track approximate length of the session.
+
+            We close sessions after 5 minutes of inactivity and don't save IP address or any other information in which we are able to track whether a user returns after a session expires. Users can opt out of session tracking by disabling cookies.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Statistics Visualization</h2>
+          <ul>
+            <li>Updated interface for viewing stats to be more visually appealing and interactive</li>
+            <li>Undergrad student at NCSU has been working on it, almost ready to merge into QS core</li>
+            <li>Work happening in the open: <a href="https://github.com/rbwest/quick_search/tree/AppVizClean">https://github.com/rbwest/quick_search/tree/AppVizClean</a></li>
+          </ul>
+
+          <aside class="notes">
+            We've had an undergraduate student working on improving the visualization of our statistics. Initially, we just had tabular views of the data, and did not have any way of viewing session data. Our student, Ryan West, has updated the interface to include interactive visualizations and improve its utility. This work is ongoing, but development is happening in the open, and we hope to merge this in to QuickSearch core in the next couple of weeks.
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/appstats_old.png" />
+
+          <aside class="notes">
+            Here's what the stats interface looked like before
+          </aside>
+        </section>
+
+        <section data-background-video="images/appstats_demo.mp4" data-background-video-loop data-background-video-muted>
+          <aside class="notes">Here's a demo showing what it looks like as of a few days ago</aside>
+        </section>
+
+        <section>
+          <h2>Near-term features</h2>
+          <ul>
+            <li>Typeahead - backend support already there, frontend needs to be generalized &amp; migrated from NCSU QS</li>
+          </ul>
+
+          <aside class="notes">
+            We're working to extract the categorized typeahead feature out of our implementation of QuickSearch and generalize it enough so that it can be used by others.
+
+            We've already added bindings to connect searchers to typeahead indexes. The last piece we're working on is to create a way to define the front end look and functionality for typeahead.
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/qs_typeahead.png" />
+
+          <aside class="notes">Here's what our categorized typeahead looks like and what it will hopefully be like in the open source version</aside>
+        </section>
+
+        <section>
+          <h2>NCSU Implementations</h2>
+
+          <aside class="notes">I want to talk quickly about our implementations of QuickSearch</aside>
+        </section>
+
+        <section>
+          <h2>NCSU QuickSearch</h2>
+          <ul>
+            <li>Our original QuickSearch</li>
+            <li>Now running on open source gem in production since Jan.</li>
+            <li>Working on extracting/generalizing last features into open source gem</li>
+          </ul>
+
+          <aside class="notes">
+            I've mentioned and showed some screenshots of the main version of QuickSearch that we run. We've been running completely on the open source gem in production since January of this year. We're just working to extract that last features into the open source gem now.
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/quick_search.png" />
+
+          <aside class="notes">
+            Here's what our version looks like again.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Historical State Search</h2>
+          <ul>
+            <li>Special Collections focused bento-box search</li>
+            <li>Originally developed as an entirely separate application</li>
+            <li>Migrated to QuickSearch core platform by Nushrat Khan</li>
+            <li>Launched into production in Mar. 2017</li>
+          </ul>
+
+          <aside class="notes">
+            We run one other bento-box search application on the QuickSearch open source gem. This application is called historical state search, and is focused on special collection content. This was an existing project that was developed in parallel to earlier versions of QuickSearch, but my colleague Nushrat Khan took the lead in migrating it to use the same core code. We just launched this into production last month.
+          </aside>
+        </section>
+
+        <section>
+          <img src="images/hss.png" />
+          <aside class="notes">Here's what Historical State Search looks like.</aside>
+        </section>
+
+        <section>
+          <h2>Historical State Search</h2>
+          <ul>
+            <li>Planning on releasing as open source as an example project that uses QuickSearch</li>
+            <li>Also planning to release new searchers for lunr.js, and other services</li>
+          </ul>
+
+          <aside class="notes">
+            We're planning on releasing the Historical State Search project as open source as an example of a production project that uses QuickSearch. We've also developed some new searchers in the process that we're planning on releasing - one can search lunr.js indexes, and there are others for some internally built services, but could act as more examples of how to interface with different types of APIs or services.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Next Steps</h2>
+          <ul>
+            <li>More library content:
+              <ul>
+                <li>Events</li>
+                <li>Spaces</li>
+                <li>People</li>
+                <li>Services</li>
+              </ul>
+            </li>
+          </ul>
+
+          <aside class="notes">
+            So what are we thinking of for the future of bento-box search? One thing is more library content. More and more libraries are using content management systems like Drupal to manage their sites, and this provides an opportunity to expose more library content and services through bento-box search.
+          </aside>
+        </section>
+
+        <section>
+          <h2>Next Steps</h2>
+          <ul>
+            <li>Intelligence:
+              <ul>
+                <li>Show results from more specialized sources depending on subject</li>
+                <li>Use collected data for recommendations</li>
+                <li>Promote library services</li>
+                <li>Context-aware - device type, on/off campus</li>
+              </ul>
+            </li>
+          </ul>
+
+          <aside class="notes">
+            We're also thinking of how to make bento-box search more intelligent. I mentioned before that I view bento-box search as a recommendation problem. We're interested in how we can show results from more specialized sources depending on what people are searching for.
+
+            We're experimenting with using the data we've been collecting around sessions, searches and clicks to provide recommendations of library services to users in an effort to promote the fact that libraries are a place for more than just books and articles.
+
+            We're also thinking about making bento-box search more context aware, and provide more relevant recommendations for someone based on factors that we can detect like whether they are on desktop or mobile, or whether they are on campus or off campus.
+          </aside>
+        </section>
+
+        <section>
+          <h2>What could this look like?</h2>
+          <img src="images/event_mockup.png" height="80%" width="80%" />
+
+          <aside class="notes">I've generated a few mockups as to what this could look like. We can offer much more rich views of library content than we currently do within our website search results, which are just static links.</aside>
+        </section>
+
+        <section>
+          <h2>What could this look like?</h2>
+          <img src="images/workshop_mockup.png" height="70%" width="70%" />
+        </section>
+
+        <section>
+          <h2>What could this look like?</h2>
+          <img src="images/tech_lending_mockup.png" height="80%" width="80%" />
+        </section>
+
+        <section>
+          <h2>Growing the QuickSearch community</h2>
+          <ul>
+            <li>We're interested in working with people that are interested in using QuickSearch</li>
+            <li>Help installing, customizing, creating new searchers</li>
+            <li>Goal is to have a large collection of searchers for popular library services, and more examples of applications and themes.</li>
+          </ul>
+
+          <aside class="notes">
+            To end off, I'd like to say that we're interested in working with people who are interested in trying out QuickSearch. I'm personally available to help people with any issues they run into installing, customizing, or creating new searchers.
+
+            Our goal with QuickSearch is to make it as easy as possible to get bento-box search up and running, while providing powerful features. We're hoping to expand our collection of searchers for popular library services, and add more examples of applications that use QuickSearch and more themes.
+          </aside>
+        </section>
+
+        <section>
+          <h2>We want to work with you!</h2>
+          <br>
+          <h4>kdbeswic@ncsu.edu</h4>
+          <h4>@kbeswick</h4>
+          <br>
+
+          <p>
+            <a href="https://www.github.com/ncsu-libraries/quick_search">https://www.github.com/ncsu-libraries/quick_search</a>
+            <br><br>
+            <a href="https://search.lib.ncsu.edu/">https://search.lib.ncsu.edu/</a>
+          </p>
+
+          <aside class="notes">
+            We want to work with you! Thank you! Any questions?
+          </aside>
+        </section>
+
 			</div>
 		</div>
 
