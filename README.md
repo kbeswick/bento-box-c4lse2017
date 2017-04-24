@@ -1,6 +1,8 @@
 # Where We're Heading with Bento-Box search
 
-Presentation delivered at Code4Lib Southeast 2017, Atlanta GA
+http://kbeswick.github.io/bento-box-c4lse2017
+
+Presentation delivered at Code4Lib Southeast 2017, Atlanta GA by Kevin Beswick
 
 ## Abstract
 
